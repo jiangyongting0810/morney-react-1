@@ -16,7 +16,7 @@ const Layout = (props:any) => {
     return (
         <Wrapper>
             <Main>
-                <h2>标签页面</h2>
+                {props.children}
             </Main>
             <Nav/>
         </Wrapper>
