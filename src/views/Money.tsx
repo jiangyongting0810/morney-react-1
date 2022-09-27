@@ -59,10 +59,56 @@ const NotesSection =styled.section`
   }
 `
 const CategorySection =styled.section`
-
+  font-size: 24px;
+  >ul{
+    display: flex;
+    background: #c4c4c4;
+    >li{
+      width: 50%;
+      text-align: center;
+      padding: 16px 0;
+      position: relative;
+      &.selected::after{
+        content: '';
+        display: block;
+        height: 3px;
+        background: #333;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+      }
+    }
+  }
 `
 const NumberPadSection =styled.section`
-
+  display: flex;
+  flex-direction: column;
+  > .output{
+    background: white;
+    font-size: 36px;
+    line-height: 72px;
+    text-align: right;
+    padding: 0 16px;
+  }
+  > .pad{
+    >button{
+      font-size: 18px;
+      float: left;
+      width: 25%;
+      height: 64px;
+      border: 0.5px solid #f5f5f5;
+      background: white;
+      
+      &.ok{
+        height: 128px;
+        float: right;
+      }
+      &.zero{
+        width: 50%;
+      }
+    }
+  }
 `
 
 
@@ -86,13 +132,13 @@ function Money() {
             </NotesSection>
             <CategorySection>
                 <ul>
-                    <li>支出</li>
+                    <li className="selected">支出</li>
                     <li>收入</li>
                 </ul>
             </CategorySection>
             <NumberPadSection>
-                <div>100</div>
-                <div>
+                <div className="output">100</div>
+                <div className="pad clearfix">
                     <button>1</button>
                     <button>2</button>
                     <button>3</button>
@@ -104,9 +150,9 @@ function Money() {
                     <button>7</button>
                     <button>8</button>
                     <button>9</button>
-                    <button>OK</button>
-                    <button>0</button>
-                    <button>.</button>
+                    <button className="ok">OK</button>
+                    <button className="zero">0</button>
+                    <button className="dot">.</button>
                 </div>
             </NumberPadSection>
         </Layout>
