@@ -6,6 +6,7 @@ import Icon from '../components/Icon';
 const TagsSection = styled.section`
   background: #FFFFFF;
   padding: 12px 24px;
+  flex-grow: 1;
   >ol{
     margin: 0 -12px;
     >li{
@@ -111,10 +112,15 @@ const NumberPadSection =styled.section`
   }
 `
 
+const MyLayout = styled(Layout)`
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+`
 
 function Money() {
     return (
-        <Layout>
+        <MyLayout>
             <TagsSection>
                 <ol>
                     <li><Icon name="clothes"/>衣服</li>
@@ -155,7 +161,7 @@ function Money() {
                     <button className="dot">.</button>
                 </div>
             </NumberPadSection>
-        </Layout>
+        </MyLayout>
     );
 }
 export default Money;
