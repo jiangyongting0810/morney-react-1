@@ -2,115 +2,11 @@ import Layout from '../components/Layout';
 import React from 'react';
 import styled from 'styled-components';
 import Icon from '../components/Icon';
+import {CategorySection} from './Money/CategorySection';
+import {NotesSection} from './Money/NotesSection';
+import {NumberPadSection} from './Money/NumberPadSection';
+import {TagsSection} from './Money/TagsSection';
 
-const TagsSection = styled.section`
-  background: #FFFFFF;
-  padding: 12px 24px;
-  flex-grow: 1;
-  >ol{
-    margin: 0 -12px;
-    >li{
-      border-radius: 18px;
-      display: inline-block;
-      font-size: 14px;
-      text-align: center;
-      margin: 8px 16.5px;
-      .icon{
-        background: #D9D9D9;
-        padding: 12px;
-        border-radius: 50px;
-        width: 48px;
-        height: 48px;
-        fill: #fff;
-        display: flex;
-        margin-bottom: 2px;
-      }
-    }
-  }
-  > button{
-    background: none;
-    border: none;
-    padding: 2px 4px;
-    border-bottom: 1px solid #333;
-    color: #666;
-    margin-top: 8px;
-  }
-`
-const NotesSection =styled.section`
-  background: #f5f5f5;
-  padding: 0 16px;
-  font-size: 14px;
-  >label{
-    //内部内容flex布局
-    display: flex;
-    //上下居中
-    align-items: center;
-    >span{
-      margin-right: 16px;
-      //文字不换行
-      white-space: nowrap;
-    }
-    >input{
-      display: block;
-      width: 100%;
-      height: 72px;
-      background: none;
-      border: none;
-    }
-  }
-`
-const CategorySection =styled.section`
-  font-size: 24px;
-  >ul{
-    display: flex;
-    background: #c4c4c4;
-    >li{
-      width: 50%;
-      text-align: center;
-      padding: 16px 0;
-      position: relative;
-      &.selected::after{
-        content: '';
-        display: block;
-        height: 3px;
-        background: #333;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        left: 0;
-      }
-    }
-  }
-`
-const NumberPadSection =styled.section`
-  display: flex;
-  flex-direction: column;
-  > .output{
-    background: white;
-    font-size: 36px;
-    line-height: 72px;
-    text-align: right;
-    padding: 0 16px;
-  }
-  > .pad{
-    >button{
-      font-size: 18px;
-      float: left;
-      width: 25%;
-      height: 64px;
-      border: 0.5px solid #f5f5f5;
-      background: white;
-      
-      &.ok{
-        height: 128px;
-        float: right;
-      }
-      &.zero{
-        width: 50%;
-      }
-    }
-  }
-`
 
 const MyLayout = styled(Layout)`
   border: 1px solid red;
