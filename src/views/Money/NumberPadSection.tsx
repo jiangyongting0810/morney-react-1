@@ -35,12 +35,22 @@ const Wrapper = styled.section`
 `;//NumberPadSection
 
 const NumberPadSection: React.FC = () => {
-    const [output, setOutput] = useState('0');
+    const [output, _setOutput] = useState('0');
+    const setOutput = (output: string) => {
+        if (output.length > 16) {
+            output = output.slice(0, 16);
+        } else if (output.length === 0) {
+            output = '0';
+        }
+        _setOutput(output);
+    };
     const OnClickButtonWrapper = (e: React.MouseEvent) => {
         const text = (e.target as HTMLButtonElement).textContent;//获取e.target的文字
-        if (text === null){return}
-        if (text){
-            switch (text){
+        if (text === null) {
+            return;
+        }
+        if (text) {
+            switch (text) {
                 case '0':
                 case '1':
                 case '2':
@@ -51,14 +61,28 @@ const NumberPadSection: React.FC = () => {
                 case '7':
                 case '8':
                 case '9':
-                case '.':
-                    if(output==='0'){
-                        setOutput(text)
-                    }else {
-                        setOutput(output+text)
+                    if (output === '0') {
+                        setOutput(text);
+                    } else {
+                        setOutput(output + text);
                     }
-                break;
-
+                    break;
+                case '.':
+                    if (output.indexOf('.') >= 0) {
+                        return;
+                    }//判断是否有.
+                    setOutput(output + '.');
+                    break;
+                case '删除':
+                    if (output.length === 1) {
+                        setOutput('0');
+                    } else {
+                        setOutput(output.slice(0, -1));//长度减一
+                    }
+                    break;
+                case "清空":
+                    setOutput('')
+                    break;
             }
         }
     };
