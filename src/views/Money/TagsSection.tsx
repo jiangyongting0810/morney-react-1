@@ -36,32 +36,35 @@ const Wrapper = styled.section`
     margin-top: 8px;
   }
 `;
-//表示它是一个函数组件FunctionComponent
-const TagsSection: React.FC = (props) => {
+type Props = {
+    value: string[]
+    onChange: (selected: string[]) => void;
+}
+const TagsSection: React.FC<Props> = (props) => {
     const [tags, setTags] = useState<string[]>(['衣', '食', '住', '行']);
-    const [selectedTags,setSelectedTags]=useState<string[]>([])
+    const selectedTags = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('新标签名为');
-        if (tagName!=null){
-            setTags([...tags,tagName])
+        if (tagName != null) {
+            setTags([...tags, tagName]);
         }
     };
-    const ontoggleTag =(tag:string) =>{
-        const index =selectedTags.indexOf(tag)
-        if (index >=0){
-            setSelectedTags(selectedTags.filter(t=>t!==tag))
-
+    const ontoggleTag = (tag: string) => {
+        const index = selectedTags.indexOf(tag);
+        if (index >= 0) {
+            props.onChange(selectedTags.filter(t => t !== tag));
+        } else {
+            props.onChange([...selectedTags, tag]);
         }
-        else {
-            setSelectedTags([...selectedTags,tag])
-        }
-    }
+    };
     return (
         <Wrapper>
             <ol>
                 {tags.map(tag =>
-                    <li key={tag} onClick={()=>{ontoggleTag(tag)}}
-                        className={selectedTags.indexOf(tag)>=0 ? "selected":""}>
+                    <li key={tag} onClick={() => {
+                        ontoggleTag(tag);
+                    }}
+                        className={selectedTags.indexOf(tag) >= 0 ? 'selected' : ''}>
                         {tag}
                     </li>)}
             </ol>

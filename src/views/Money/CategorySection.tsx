@@ -25,19 +25,28 @@ const Wrapper =styled.section`
     }
   }
 `;
+type Props = {
+    value: '-' | '+',
+    onChange: (value: '-' | '+') => void;
+}
 
-const CategorySection:React.FC=()=>{
-    const [category,setCategory]= useState('-')//+表收入-表支出
-    return(
+const CategorySection: React.FC<Props> = (props) => {
+    const categoryMap = {'-': '支出', '+': '收入'};
+    const [categoryList] = useState<('+' | '-')[]>(['-', '+']);
+    const category = props.value;
+    return (
         <Wrapper>
             <ul>
-                <li className={category ==='-'?'selected':''}
-                    onClick={()=>{setCategory('-')}}>支出</li>
-                <li className={category ==='+'?'selected':''}
-                    onClick={()=>{setCategory('+')}}>收入</li>
+                {categoryList.map(c =>
+                    <li key={c}
+                        className={category === c ? 'selected' : ''}
+                        onClick={() => {props.onChange(c);}}
+                    >{categoryMap[c]}
+                    </li>
+                )}
             </ul>
         </Wrapper>
-    )
-}
+    );
+};
 
 export {CategorySection}
